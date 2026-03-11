@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@1,500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Petal ── */
+@keyframes petalFall {
+  0%   { transform: translateY(-40px) rotate(0deg) translateX(0px); opacity: 0; }
+  8%   { opacity: 0.65; }
+  92%  { opacity: 0.45; }
+  100% { transform: translateY(105vh) rotate(400deg) translateX(30px); opacity: 0; }
+}
+
+/* ── Intro ── */
+@keyframes introIn {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes ringPulse {
+  0%,100% { transform: scale(1); opacity: 0.5; }
+  50%      { transform: scale(1.12); opacity: 0.15; }
+}
+
+/* ── Envelope ── */
+@keyframes envIn {
+  from { opacity: 0; transform: translateY(50px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes envOut {
+  0%   { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+  50%  { transform: translateY(-30px) scale(1.05) rotate(2deg); opacity: 1; }
+  100% { opacity: 0; transform: translateY(-100px) scale(0.6) rotate(-5deg); }
+}
+@keyframes sparkle {
+  0%,100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+@keyframes lidOpen {
+  from { transform: rotateX(0deg); }
+  to   { transform: rotateX(-170deg); }
+}
+
+/* ── Main Card ── */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(70px) scale(0.88); }
+  60%  { transform: translateY(-6px) scale(1.01); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-12px); }
+}
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 30px rgba(100,180,255,0.25), 0 20px 60px rgba(0,0,0,0.35); }
+  50%      { box-shadow: 0 0 60px rgba(100,180,255,0.5),  0 20px 60px rgba(0,0,0,0.35); }
+}
+@keyframes shimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position:  300% center; }
+}
+@keyframes nameIn1 {
+  from { opacity: 0; transform: translateX(-40px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateX(0);     filter: blur(0); }
+}
+@keyframes nameIn2 {
+  from { opacity: 0; transform: translateX(40px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateX(0);    filter: blur(0); }
+}
+@keyframes ampIn {
+  from { opacity: 0; transform: scale(0.3) rotate(-30deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes lineGrow {
+  from { width: 0;    opacity: 0; }
+  to   { width: 70px; opacity: 1; }
+}
+@keyframes btnUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes guestIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes detailsIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Utility classes ── */
+.shimmer-name {
+  background: linear-gradient(90deg, #7ec8ff 10%, #d4eeff 40%, #7ec8ff 60%, #b0daff 80%, #7ec8ff 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+.floating  { animation: float 5s ease-in-out infinite; }
+.glow-card { animation: glow  4s ease-in-out infinite; }
+
+.btn-main {
+  transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease;
+}
+.btn-main:hover {
+  transform: scale(1.07) translateY(-3px) !important;
+  box-shadow: 0 16px 48px rgba(100,180,255,0.55) !important;
+}
+.btn-main:active { transform: scale(0.96) !important; }
+
+.guest-badge { animation: guestIn 0.7s cubic-bezier(.34,1.56,.64,1) 1.5s both; }
+
+
+
+
+
+
+
+html { scroll-behavior: smooth; }
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0; transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0; transform: translateX(50px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0; transform: scale(0.85);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.22,1,.36,1);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* ── Petal ── */
+@keyframes petalFall {
+  0%   { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+  8%   { opacity: 0.65; }
+  92%  { opacity: 0.45; }
+  100% { transform: translateY(105vh) rotate(400deg) translateX(30px); opacity: 0; }
+}
+
+/* ── Intro ── */
+@keyframes introIn {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes ringPulse {
+  0%,100% { transform: scale(1); opacity: 0.5; }
+  50%      { transform: scale(1.12); opacity: 0.15; }
+}
+
+/* ── Envelope ── */
+@keyframes envIn {
+  from { opacity: 0; transform: translateY(50px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes envOut {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-30px) scale(1.05) rotate(2deg); opacity: 1; }
+  100% { opacity: 0; transform: translateY(-100px) scale(0.6) rotate(-5deg); }
+}
+@keyframes sparkle {
+  0%,100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+@keyframes lidOpen {
+  from { transform: rotateX(0deg); }
+  to   { transform: rotateX(-170deg); }
+}
+
+/* ── Card ── */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(70px) scale(0.88); }
+  60%  { transform: translateY(-6px) scale(1.01); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-12px); }
+}
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 30px rgba(100,180,255,0.25), 0 20px 60px rgba(0,0,0,0.35); }
+  50%      { box-shadow: 0 0 60px rgba(100,180,255,0.5),  0 20px 60px rgba(0,0,0,0.35); }
+}
+@keyframes shimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position:  300% center; }
+}
+@keyframes nameIn1 {
+  from { opacity: 0; transform: translateX(-40px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+@keyframes nameIn2 {
+  from { opacity: 0; transform: translateX(40px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+@keyframes ampIn {
+  from { opacity: 0; transform: scale(0.3) rotate(-30deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes lineGrow {
+  from { width: 0; opacity: 0; }
+  to   { width: 70px; opacity: 1; }
+}
+@keyframes btnUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes guestIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes detailsIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Utilities ── */
+.shimmer-name {
+  background: linear-gradient(90deg, #7ec8ff 10%, #d4eeff 40%, #7ec8ff 60%, #b0daff 80%, #7ec8ff 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+.floating  { animation: float 5s ease-in-out infinite; }
+.glow-card { animation: glow  4s ease-in-out infinite; }
+
+.btn-main {
+  transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease;
+}
+.btn-main:hover {
+  transform: scale(1.07) translateY(-3px) !important;
+  box-shadow: 0 16px 48px rgba(100,180,255,0.55) !important;
+}
+.btn-main:active { transform: scale(0.96) !important; }
+
+.guest-badge { animation: guestIn 0.7s cubic-bezier(.34,1.56,.64,1) 1.5s both; }
