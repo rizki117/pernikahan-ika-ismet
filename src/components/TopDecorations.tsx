@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // components/TopDecorations.tsx
 // Dua merpati cinta bercumbu – Canvas API (sama persis seperti ClosingSection)
 

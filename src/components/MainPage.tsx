@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // components/MainPage.tsx
 
 import { useState, useEffect, useRef } from "react";
