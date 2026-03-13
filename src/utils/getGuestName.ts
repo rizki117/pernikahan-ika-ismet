@@ -1,15 +1,15 @@
 /**
- * Ambil nama tamu dari URL path.
+ * Ambil nama tamu dari URL query parameter ?to=
  *
  * Contoh:
- *   /Andi          → "Andi"
- *   /miah          → "miah"
- *   /Budi%20Santoso → "Budi Santoso"
- *   /              → "Tamu Undangan"
+ *   ?to=Andi           → "Andi"
+ *   ?to=Budi%20Santoso → "Budi Santoso"
+ *   ?to=               → "Tamu Undangan"
+ *   (kosong)           → "Tamu Undangan"
  */
 export function getGuestName(): string {
-  const path = window.location.pathname;
-  const segment = path.replace(/^\//, "").split("/")[0];
-  if (!segment) return "Tamu Undangan";
-  return decodeURIComponent(segment);
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("to");
+  if (!name || !name.trim()) return "Tamu Undangan";
+  return decodeURIComponent(name);
 }
